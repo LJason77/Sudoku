@@ -1,5 +1,7 @@
 # Sudoku
 
+解数独
+
 [![build badge](https://github.com/LJason77/Sudoku/actions/workflows/rust.yml/badge.svg?branch=master)](https://github.com/LJason77/Sudoku/actions/workflows/rust.yml)
 ![GitHub forks](https://img.shields.io/github/forks/LJason77/Sudoku?style=social)
 ![GitHub Repo stars](https://img.shields.io/github/stars/LJason77/Sudoku?style=social)
