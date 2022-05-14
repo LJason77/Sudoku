@@ -32,6 +32,8 @@ static mut HORIZONTAL: [u16; 9] = [0; 9];
 static mut VERTICAL: [u16; 9] = [0; 9];
 // 3x3方格
 static mut SQUARE: [u16; 9] = [0; 9];
+// 是否结束
+static mut FINISHED: bool = false;
 
 fn main() {
     // 获得空格的位置
@@ -58,6 +60,11 @@ fn main() {
     }
 
     // 打印结果
+    print_result(&sudoku);
+}
+
+// 打印结果
+fn print_result(sudoku: &[[u8; 9]; 9]) {
     for (i, row) in sudoku.iter().enumerate() {
         for (j, col) in row.iter().enumerate() {
             if j % 3 == 0 {
@@ -74,16 +81,19 @@ fn main() {
 
 unsafe fn fill(pos: usize, sudoku: &mut [[u8; 9]; 9], spaces: &Vec<(usize, usize)>) {
     if pos == spaces.len() {
+        FINISHED = true;
         return;
     }
     let (i, j) = spaces[pos];
 
-    for n in 1..10 {
+    let mut n = 1;
+    while !FINISHED && n <= 9 {
         let square = (i / 3) * 3 + j / 3;
         if (HORIZONTAL[i] >> n) & 1 == 1
             || (VERTICAL[j] >> n) & 1 == 1
             || (SQUARE[square] >> n) & 1 == 1
         {
+            n += 1;
             continue;
         }
         sudoku[i][j] = n;
@@ -94,5 +104,6 @@ unsafe fn fill(pos: usize, sudoku: &mut [[u8; 9]; 9], spaces: &Vec<(usize, usize
         HORIZONTAL[i] -= 1 << n;
         VERTICAL[j] -= 1 << n;
         SQUARE[square] -= 1 << n;
+        n += 1;
     }
 }
