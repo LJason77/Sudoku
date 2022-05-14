@@ -1,0 +1,15 @@
+[package]
+name = "sudoku"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.60"
+authors = ["LJason <ljason@ljason.cn>"]
+license-file = "LICENSE"
+readme = "README.md"
+
+[profile.release]
+codegen-units = 1
+lto = "fat"
+panic = "abort"
+
+[dependencies]
