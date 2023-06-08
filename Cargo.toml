@@ -2,7 +2,7 @@
 name = "sudoku"
 version = "0.1.0"
 edition = "2021"
-rust-version = "1.60"
+rust-version = "1.70"
 authors = ["LJason <ljason@ljason.cn>"]
 license-file = "LICENSE"
 readme = "README.md"
@@ -11,5 +11,11 @@ readme = "README.md"
 codegen-units = 1
 lto = "fat"
 panic = "abort"
+opt-level = 2
 
 [dependencies]
+image = "0.24"
+
+[dependencies.tesseract]
+version = "0.15"
+default-features = false
